@@ -1,5 +1,7 @@
 # 🏗️ Applied AI Builder: DDR Report Generator
 
+**🌟 Live Application:** [Click here to use the public DDR Report Generator!](https://ddr-report-generation-ia98iusux9yypmwkuxrwjm.streamlit.app/)
+
 An automated, AI-powered Detailed Diagnostic Report (DDR) generation system that intelligently merges findings from structural Inspection Reports and Thermal Reports into a cohesive, client-ready document.
 
 ## 🚀 Features
