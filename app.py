@@ -10,8 +10,60 @@ load_dotenv()
 # Set up page configuration
 st.set_page_config(page_title="DDR Report Generator", page_icon="📄", layout="wide")
 
-st.title("🏗️ Applied AI Builder: DDR Report Generation")
-st.markdown("This system takes an **Inspection Report** and a **Thermal Report**, extracts observations and images, and generates a structured **Detailed Diagnostic Report (DDR)** using AI.")
+# Custom CSS for Premium Aesthetics
+st.markdown("""
+    <style>
+    /* Main Background & Typography */
+    .stApp {
+        background-color: #f8fafc;
+        font-family: 'Inter', sans-serif;
+    }
+    
+    /* Headers */
+    h1, h2, h3 {
+        color: #1e293b;
+        font-weight: 700;
+    }
+    
+    /* Primary Button */
+    .stButton>button {
+        background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 0.5rem 2rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.4);
+    }
+    .stButton>button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.5);
+    }
+    
+    /* Expander / Cards */
+    .streamlit-expanderHeader {
+        background-color: white;
+        border-radius: 8px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    }
+    
+    /* Information Boxes */
+    div[data-testid="stInfo"] {
+        background-color: #eff6ff;
+        border-left-color: #3b82f6;
+    }
+    
+    div[data-testid="stWarning"] {
+        background-color: #fffbeb;
+        border-left-color: #f59e0b;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+st.title("✨ Applied AI Builder: DDR Generation")
+st.markdown("An intelligent system that merges **Inspection** and **Thermal** reports into a cohesive, client-ready **Detailed Diagnostic Report (DDR)**.")
 
 # Sidebar for configuration
 st.sidebar.header("Upload Reports")
