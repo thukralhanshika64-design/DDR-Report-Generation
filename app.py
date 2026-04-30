@@ -3,6 +3,9 @@ import os
 import shutil
 from extractor import PDFExtractor
 from ai_processor import AIProcessor
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Set up page configuration
 st.set_page_config(page_title="DDR Report Generator", page_icon="📄", layout="wide")
@@ -11,10 +14,6 @@ st.title("🏗️ Applied AI Builder: DDR Report Generation")
 st.markdown("This system takes an **Inspection Report** and a **Thermal Report**, extracts observations and images, and generates a structured **Detailed Diagnostic Report (DDR)** using AI.")
 
 # Sidebar for configuration
-st.sidebar.header("Configuration")
-api_key = st.sidebar.text_input("Groq API Key (Optional if in .env)", type="password")
-
-st.sidebar.markdown("---")
 st.sidebar.header("Upload Reports")
 inspection_file = st.sidebar.file_uploader("Upload Inspection Report (PDF)", type=["pdf"])
 thermal_file = st.sidebar.file_uploader("Upload Thermal Report (PDF)", type=["pdf"])
@@ -28,9 +27,9 @@ OUTPUT_IMG_DIR = "extracted_images"
 if st.button("Generate DDR", type="primary"):
     
     # Check API key
-    final_api_key = api_key or os.environ.get("GROQ_API_KEY")
+    final_api_key = os.environ.get("GROQ_API_KEY")
     if not final_api_key:
-        st.error("Please provide a Groq API Key in the sidebar or via .env file.")
+        st.error("Please provide a Groq API Key in the .env file.")
         st.stop()
         
     insp_path = None
