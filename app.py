@@ -59,10 +59,8 @@ if st.button("Generate DDR", type="primary"):
         with open(therm_path, "wb") as f:
             f.write(thermal_file.getbuffer())
 
-    # Ensure output image directory exists and is clean
-    if os.path.exists(OUTPUT_IMG_DIR):
-        shutil.rmtree(OUTPUT_IMG_DIR)
-    os.makedirs(OUTPUT_IMG_DIR)
+    # Ensure output image directory exists
+    os.makedirs(OUTPUT_IMG_DIR, exist_ok=True)
 
     with st.spinner("Extracting text and images from PDFs..."):
         extractor = PDFExtractor(output_img_dir=OUTPUT_IMG_DIR)
