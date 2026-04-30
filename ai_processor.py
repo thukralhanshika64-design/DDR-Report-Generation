@@ -27,6 +27,12 @@ class AIProcessor:
         for page_num, data in thermal_data.items():
             context += f"--- Page {page_num} ---\nTEXT:\n{data['text']}\nIMAGES FOUND ON PAGE: {data['images']}\n\n"
 
+        # Truncate context to stay within Groq's 6000 TPM free tier limit
+        # 1 token is roughly 4 characters. 6000 tokens = ~24000 characters. 
+        # Using 15000 to be safe and leave room for the response.
+        if len(context) > 15000:
+            context = context[:15000] + "\n...[CONTENT TRUNCATED DUE TO FREE TIER API LIMITS]..."
+
         system_prompt = """
         You are an expert technical inspector and report writer. Your task is to analyze extracted text and image paths from an Inspection Report and a Thermal Report, and combine them into a single, cohesive, client-ready Detailed Diagnostic Report (DDR).
 
@@ -64,7 +70,7 @@ class AIProcessor:
 
         try:
             response = self.client.chat.completions.create(
-                model="llama-3.3-70b-versatile",
+                model="llama-3.1-8b-instant",
                 messages=[
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": context}
@@ -84,5 +90,5 @@ class AIProcessor:
             return json.loads(raw_output)
             
         except Exception as e:
-            print(f"Error calling LLM: {e}")
-            return None
+            raise RuntimeError(f"Error calling LLM: {e}")
+
