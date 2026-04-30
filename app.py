@@ -13,15 +13,13 @@ st.set_page_config(page_title="DDR Report Generator", page_icon="📄", layout="
 # Custom CSS for Premium Aesthetics
 st.markdown("""
     <style>
-    /* Main Background & Typography */
+    /* Main Typography */
     .stApp {
-        background-color: #f8fafc;
         font-family: 'Inter', sans-serif;
     }
     
     /* Headers */
     h1, h2, h3 {
-        color: #1e293b;
         font-weight: 700;
     }
     
